@@ -13,14 +13,14 @@
   storage: {
     files: [
       {
-        path: '/usr/local/bin/run-k3s-prereq-installer',
+        path: '/usr/local/bin/run-coreos-installer',
         mode: 493,
         contents: {
-          inline: '#!/usr/bin/env sh\nmain() {\n  rpm-ostree install https://rpm.rancher.io/k3s-selinux-0.1.1-rc1.el7.noarch.rpm\n  return 0\n}\nmain\n',
+          inline: "#!/usr/bin/bash\nset -x\nmain() {\n    ignition_file='/home/core/k3s-autoinstall.ign'\n    image_url='https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20201004.3.0/x86_64/fedora-coreos-32.20201004.3.0-metal.x86_64.raw.xz'\n    firstboot_args='console=tty0'\n    if [ -b /dev/sda ]; then\n        install_device='/dev/sda'\n    elif [ -b /dev/nvme0 ]; then\n        install_device='/dev/nvme0'\n    else\n        echo \"Can't find appropriate device to install to\" 1>&2\n        poststatus 'failure'\n        return 1\n    fi\n    cmd=\"coreos-installer install --firstboot-args=${firstboot_args}\"\n    cmd+=\" --image-url ${image_url} --ignition=${ignition_file}\"\n    cmd+=\" ${install_device}\"\n    if $cmd; then\n        echo \"Install Succeeded!\"\n        return 0\n    else\n        echo \"Install Failed!\"\n        return 1\n    fi\n}\nmain\n",
         },
       },
       {
-        path: '/home/core/config.ign',
+        path: '/home/core/k3s-autoinstall.ign',
         contents: {
           inline: importstr 'k3s-autoinstall.ign',
         },
