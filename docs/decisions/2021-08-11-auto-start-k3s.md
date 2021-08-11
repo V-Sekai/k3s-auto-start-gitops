@@ -30,8 +30,8 @@ Automate this process into a iso.
 3. Design a jsonnet for yaml.
 4. You need to take the contents of a ign file named k3s-autoinstall.ign, and place them inside the coreos-autoinstall.fcc file inline inside the storage.files array, in the object with path /home/core/k3s-autoinstall.ign.
 5. Create the coreos-autoinstall.ign file from the fcc file created on step 3.
-6. Embed the coreos-autoinstall.ign ignition file inside the ISO image/
-7. Name may vary.
+6. Embed the coreos-autoinstall.ign ignition file inside the ISO image.
+7. The iso name may vary.
 
 #### Github Actions
 
