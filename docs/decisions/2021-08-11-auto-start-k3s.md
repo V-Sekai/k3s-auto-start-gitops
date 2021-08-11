@@ -1,6 +1,4 @@
-### Proposal Title
-
-Auto-installing iso image for k3s
+# Auto-installing iso image for k3s
 
 ### Context and Problem Statement
 
