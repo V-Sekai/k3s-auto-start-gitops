@@ -35,7 +35,7 @@ WantedBy=multi-user.target
 set -x
 main() {
     ignition_file='/home/core/config.ign'
-    image_url='https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/32.20201004.3.0/x86_64/fedora-coreos-34.20210725.3.0-metal.x86_64.raw.xz'
+    image_url='https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/34.20210725.3.0/x86_64/fedora-coreos-34.20210725.3.0-metal.x86_64.raw.xz'
     firstboot_args='console=tty0'
     if [ -b /dev/vda ]; then
         install_device='/dev/vda'
