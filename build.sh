@@ -4,3 +4,4 @@ podman run --privileged --pull=always --rm -v .:/data -w /data quay.io/coreos/co
 && jsonnet coreos-autoinstall.jsonnet | yq --yaml-roundtrip > coreos-autoinstall.fcc \
 && podman run -i --rm quay.io/coreos/fcct:release --pretty --strict < coreos-autoinstall.fcc > coreos-autoinstall.ign \
 && podman run --privileged --pull=always --rm -v .:/data -w /data quay.io/coreos/coreos-installer:release iso ignition embed -i coreos-autoinstall.ign ./fedora-coreos-*-live.x86_64.iso
+rm *.sig
